@@ -12,24 +12,33 @@ namespace UserLogin
     public class UserLoginManager
     {
 
-        private static Dictionary<string, string> userDict = new Dictionary<string, string>()
-        {   // init with two users in the dictionary: admin & guest
-            { "admin", "Qwerty123"   },
-            { "guest", "Password123" }
-        };
+        private Dictionary<string, string> userDict;
 
+        public UserLoginManager()
+        {
+            userDict = new Dictionary<string, string>()
+            {   // init with two users in the dictionary: admin & guest
+                { "admin", "Qwerty123"   },
+                { "guest", "Password123" }
+            };
+        }
 
-        public static int UserCount()
+        public UserLoginManager(Dictionary<string, string> userDict)
+        {
+            this.userDict = userDict;
+        }
+
+        public int UserCount()
         {
             return userDict.Count;
         }
 
-        public static bool UserExcists(string userName)
+        public bool UserExcists(string userName)
         {
             return userDict.ContainsKey(userName);
         }
 
-        public static bool AddUser(string userName, string password)
+        public bool AddUser(string userName, string password)
         {
             if (UserExcists(userName) || ValidatePassword(password))
             {
@@ -43,7 +52,7 @@ namespace UserLogin
 
         }
 
-        public static bool LoginUser(string userName, string password)
+        public bool LoginUser(string userName, string password)
         {
             if (UserExcists(userName))
             {
@@ -61,7 +70,7 @@ namespace UserLogin
             return false;
         }
 
-        public static bool ValidatePassword(string password)
+        public bool ValidatePassword(string password)
         {
             if (password.Any(char.IsDigit) && password.Any(char.IsLetter))
             {
