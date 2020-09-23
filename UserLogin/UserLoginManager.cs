@@ -11,7 +11,7 @@ namespace UserLogin
     /// </summary>
     public class UserLoginManager
     {
-
+        //Stores user & password
         private Dictionary<string, string> userDict;
 
         public UserLoginManager()
@@ -28,16 +28,31 @@ namespace UserLogin
             this.userDict = userDict;
         }
 
+        /// <summary>
+        /// Get aount of users
+        /// </summary>
+        /// <returns>int amount of users</returns>
         public int UserCount()
         {
             return userDict.Count;
         }
 
+        /// <summary>
+        /// Checks if Username Excists
+        /// </summary>
+        /// <param name="userName">true or false</param>
+        /// <returns></returns>
         public bool UserExcists(string userName)
         {
             return userDict.ContainsKey(userName);
         }
 
+        /// <summary>
+        /// Add a new Username and there password
+        /// </summary>
+        /// <param name="userName">Must be unique</param>
+        /// <param name="password">Must be valid</param>
+        /// <returns></returns>
         public bool AddUser(string userName, string password)
         {
             if (UserExcists(userName) || ValidatePassword(password))
@@ -52,6 +67,12 @@ namespace UserLogin
 
         }
 
+        /// <summary>
+        /// Logins in valid user
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns>returns true if its a valid login otherwise false</returns>
         public bool LoginUser(string userName, string password)
         {
             if (UserExcists(userName))
@@ -70,6 +91,12 @@ namespace UserLogin
             return false;
         }
 
+        /// <summary>
+        /// Validates password
+        /// Must contain a letter and a digit(number)
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool ValidatePassword(string password)
         {
             if (password.Any(char.IsDigit) && password.Any(char.IsLetter))
