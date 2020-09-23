@@ -8,6 +8,7 @@ namespace UserLogin
     /// This user login manager manages a simple list of users and there passwords (string, string)
     /// Username is unique
     /// Password needs to contain a letter and a digit(number)
+    /// Defualt UserLoginManager will have two users: admin & guest
     /// </summary>
     public class UserLoginManager
     {
@@ -29,7 +30,7 @@ namespace UserLogin
         }
 
         /// <summary>
-        /// Get aount of users
+        /// Get amount of users
         /// </summary>
         /// <returns>int amount of users</returns>
         public int UserCount()
